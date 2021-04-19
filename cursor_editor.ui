@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>485</width>
-    <height>373</height>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,7 +31,7 @@
     <string>Cursor Editor</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_preview">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -58,8 +58,21 @@
      <height>131</height>
     </rect>
    </property>
+   <widget class="QLabel" name="label_cursor_preview">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>131</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
-  <widget class="QLabel" name="label_2">
+  <widget class="QLabel" name="label_elements">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -77,7 +90,7 @@
     <string>Elements</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_3">
+  <widget class="QLabel" name="label_centre_circle">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -95,7 +108,7 @@
     <string>Centre Circle</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_4">
+  <widget class="QLabel" name="label_cc_radius">
    <property name="geometry">
     <rect>
      <x>210</x>
@@ -108,20 +121,20 @@
     <string>Radius</string>
    </property>
   </widget>
-  <widget class="QLabel" name="label_5">
+  <widget class="QLabel" name="label_cc_color">
    <property name="geometry">
     <rect>
      <x>210</x>
-     <y>150</y>
+     <y>160</y>
      <width>47</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Colour</string>
+    <string>Color</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="spinBox">
+  <widget class="QSpinBox" name="spinBox_cc_radius">
    <property name="geometry">
     <rect>
      <x>260</x>
@@ -131,19 +144,19 @@
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="widget_cc_colour_preview" native="true">
+  <widget class="QWidget" name="widget_cc_color_preview" native="true">
    <property name="geometry">
     <rect>
-     <x>319</x>
-     <y>159</y>
+     <x>310</x>
+     <y>160</y>
      <width>21</width>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QLabel" name="label_cc_colour_preview">
+   <widget class="QLabel" name="label_cc_color_preview">
     <property name="geometry">
      <rect>
-      <x>-10</x>
+      <x>0</x>
       <y>0</y>
       <width>21</width>
       <height>21</height>
@@ -157,7 +170,7 @@
     </property>
    </widget>
   </widget>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="pushButton_cc_color">
    <property name="geometry">
     <rect>
      <x>330</x>
@@ -170,7 +183,7 @@
     <string>Select</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="lineEdit">
+  <widget class="QLineEdit" name="lineEdit_cc_color">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -181,6 +194,263 @@
    </property>
    <property name="text">
     <string>#FFFFFF</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_oc_radius">
+   <property name="geometry">
+    <rect>
+     <x>260</x>
+     <y>230</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_oc_color">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>270</y>
+     <width>47</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Color</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_oc_color">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>270</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_oc_color_preview" native="true">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>270</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="label_oc_color_preview">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_oc_radius">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>230</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Radius</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_oc_color">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>270</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>#FFFFFF</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_glow_radius">
+   <property name="geometry">
+    <rect>
+     <x>211</x>
+     <y>341</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Radius</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_glow_color">
+   <property name="geometry">
+    <rect>
+     <x>211</x>
+     <y>381</y>
+     <width>47</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Color</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_glow_color">
+   <property name="geometry">
+    <rect>
+     <x>331</x>
+     <y>381</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_glow_color">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>380</y>
+     <width>61</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>#FFFFFF</string>
+   </property>
+  </widget>
+  <widget class="QSpinBox" name="spinBox_glow_radius">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>261</x>
+     <y>341</y>
+     <width>42</width>
+     <height>22</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widget_glow_color_preview" native="true">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>380</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QLabel" name="label_glow_color_preview">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>21</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="pushButton_update_preview">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>60</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_glow">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>310</y>
+     <width>47</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Glow</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_outer_circle">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>193</y>
+     <width>71</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Outer Circle</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_antialiasing">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>230</y>
+     <width>111</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Anti Aliasing</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_confirm">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>430</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Accept</string>
    </property>
   </widget>
  </widget>
