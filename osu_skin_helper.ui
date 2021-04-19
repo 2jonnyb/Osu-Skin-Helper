@@ -1,0 +1,990 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>647</width>
+    <height>382</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Osu Skin Helper</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="tabWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>361</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab_setup">
+     <attribute name="title">
+      <string>Setup</string>
+     </attribute>
+     <widget class="QLabel" name="label_title">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>201</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Osu Skin Helper</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_modes">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Modes</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>60</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Standard</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_2">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>60</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mania</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_3">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>60</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Taiko</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_4">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>60</y>
+        <width>70</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Catch</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>120</y>
+        <width>571</width>
+        <height>191</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_skin_ini">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>90</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>skin.ini</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_UI">
+     <attribute name="title">
+      <string>UI Elements</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="currentIndex">
+       <number>2</number>
+      </property>
+      <widget class="QWidget" name="tab_main_menu">
+       <attribute name="title">
+        <string>Main Menu</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_main_menu">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>10</y>
+          <width>141</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Main Menu</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_menu_background">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>60</y>
+          <width>91</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Menu Background</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_welcome">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>100</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Welcome Text</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_menu_snow">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>140</y>
+          <width>61</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Menu Snow</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_options_offset_tick">
+        <property name="geometry">
+         <rect>
+          <x>40</x>
+          <y>180</y>
+          <width>101</width>
+          <height>16</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Options Offset Tick</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_menu_background">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>60</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_welcome">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>100</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_menu_snow">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>140</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_options_offset_tick">
+        <property name="geometry">
+         <rect>
+          <x>160</x>
+          <y>180</y>
+          <width>75</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Select</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_menu_background">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>60</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_welcome">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>100</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_menu_snow">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>140</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_options_offset_tick">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>270</x>
+          <y>180</y>
+          <width>113</width>
+          <height>20</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_cursor">
+       <attribute name="title">
+        <string>Cursor</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Cursor</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_song_selection">
+       <attribute name="title">
+        <string>Song Selection</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_song_selection">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Song Selection</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_mod_selection">
+       <attribute name="title">
+        <string>Mod Selection</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_mod_selection">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Mod Selection</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_gamemode">
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <attribute name="title">
+        <string>Gamemode</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_gamemode">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Gamemode</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_grade">
+       <attribute name="title">
+        <string>Results Screen</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_grade">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Results Screen</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_score_numbers">
+       <attribute name="title">
+        <string>Score Number</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_score_numbers">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>191</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Score Numbers</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_gameplay">
+     <attribute name="title">
+      <string>Gameplay</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>591</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_pause_screen">
+       <attribute name="title">
+        <string>Pause Screen</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Pause Screen</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_scorebar">
+       <attribute name="title">
+        <string>Scorebar</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_scorebar">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Scorebar</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_countdown">
+       <attribute name="title">
+        <string>Countdown</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_countdown">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Countdown</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_leaderboard">
+       <attribute name="title">
+        <string>Leaderboard</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_leaderboard">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Leaderboard</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_playfield">
+       <attribute name="title">
+        <string>Playfield</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_playfield">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Playfield</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_key_counter">
+       <attribute name="title">
+        <string>Key Counter</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_key_counter">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>171</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Key Counter</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_standard">
+     <attribute name="title">
+      <string>Standard</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_4">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_hitcircle_numbers">
+       <attribute name="title">
+        <string>Hitcircle Numbers</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_hitcircle_numbers">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>211</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hitcircle Numbers</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_hitcircle_object">
+       <attribute name="title">
+        <string>Hitcircles</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_hitcircles">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hitcircles</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_slidertrack">
+       <attribute name="title">
+        <string>Slidertrack</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_slidertrack">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Slidertrack</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_spinner">
+       <attribute name="title">
+        <string>Spinner</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_spinner">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Spinner</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_hitbursts">
+       <attribute name="title">
+        <string>Hitbursts</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hitbursts</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_mania">
+     <attribute name="title">
+      <string>Mania</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_mania_stage">
+       <attribute name="title">
+        <string>Stage</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_mania_keys">
+       <attribute name="title">
+        <string>Keys</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_mania_notes">
+       <attribute name="title">
+        <string>Notes</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_mania_hitbursts">
+       <attribute name="title">
+        <string>Hitbursts</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_taiko">
+     <attribute name="title">
+      <string>Taiko</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>6</number>
+      </property>
+      <widget class="QWidget" name="tab_taiko_pippidon">
+       <attribute name="title">
+        <string>Pippidon</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_slider_bar">
+       <attribute name="title">
+        <string>Slider Bar</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_drum_bar">
+       <attribute name="title">
+        <string>Drum Bar</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_notes">
+       <attribute name="title">
+        <string>Notes</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_drumroll">
+       <attribute name="title">
+        <string>Drumroll</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_swell">
+       <attribute name="title">
+        <string>Swell</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_taiko_hitbursts">
+       <attribute name="title">
+        <string>Hitbursts</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_catch">
+     <attribute name="title">
+      <string>Catch</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>641</width>
+        <height>301</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>1</number>
+      </property>
+      <widget class="QWidget" name="tab_catch_catcher">
+       <attribute name="title">
+        <string>Catcher + Playfield</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_catch_fruits">
+       <attribute name="title">
+        <string>Fruits</string>
+       </attribute>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Completion</string>
+     </attribute>
+     <widget class="QLabel" name="label_completion">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>141</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Completion</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_output_folder">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>60</y>
+        <width>121</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Output Location</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_output_folder">
+      <property name="geometry">
+       <rect>
+        <x>420</x>
+        <y>60</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Select</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_output_folder">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>60</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_create_skin">
+      <property name="geometry">
+       <rect>
+        <x>260</x>
+        <y>130</y>
+        <width>111</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Create Skin!</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Skin">
+   <property name="text">
+    <string>New Skin</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
