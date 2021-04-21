@@ -14,6 +14,8 @@ from PyQt5.QtGui import QPixmap
 import add_element_01
 import cursor_editor_01
 
+import json
+
 
 class AddElement(QInputDialog):
 
@@ -427,60 +429,8 @@ class Ui_MainWindow(object):
         self.actionNew_Skin.setObjectName("actionNew_Skin")
 
         ######################USER
-        self.fields = {  "UI": {
-                        "main_menu" : {
-                            "Menu Background": {},
-                            "Welcome" : {},
-                            "Menu Snow": {},
-                            "Options Offset Tick" : {}
-                        },
-                        "cursor" : {
-                            "Cursor" : {},
-                            "Cursor Trail" : {},
-                            "Cursor Middle" : {},
-                            "Cursor Smoke" : {},
-                            "Cursor Ripple" : {}
-                        },
-                        "song_selection" : {},
-                        "mod_selection" : {},
-                        "gamemode" : {},
-                        "grade" : {},
-                        "score_numbers" : {}
-                    },
-                    "gameplay" : {
-                        "pause_screen" : {},
-                        "scorebar" : {},
-                        "countdown" : {},
-                        "leaderboard" : {},
-                        "playfield" : {},
-                        "key_counter" : {}
-                    },
-                    "standard" : {
-                        "hitcircle_numbers" : {},
-                        "slidertrack" : {},
-                        "spinner" : {},
-                        "hitbursts" : {}
-                    },
-                    "mania" : {
-                        "mania_stage" : {},
-                        "mania_keys" : {},
-                        "mania_notes" : {},
-                        "mania_hitbursts" : {}
-                    },
-                    "taiko" : {
-                        "taiko_pippidon" : {},
-                        "taiko_slider_bar" : {},
-                        "taiko_drum_bar" : {},
-                        "taiko_notes" : {},
-                        "taiko_drumroll" : {},
-                        "taiko_swell" : {},
-                        "taiko_hitbursts" : {}
-                    },
-                    "catch" : {
-                        "catch_catcher" : {},
-                        "catch_fruits" : {}
-                    }
-                    }
+        with open('fields.json','r') as f:
+            self.fields = json.loads(f.read())
         self.createFields()
         #####################NON USER
 
@@ -649,12 +599,6 @@ class Ui_MainWindow(object):
                 for field in self.fields[tab_a][tab_b]:
                     row = int(i / 2)
                     col = i % 2
-
-                    #self.lineEdit_menu_snow = QtWidgets.QLineEdit(self.tab_main_menu)
-                    m = globals()['MainWindow']
-                    #print(m.children.centralwidget.children())
-                    #print(list(b.children()) for b in list(a for a in m.children()))
-                    print(row,col)
                     self.fields[tab_a][tab_b][field]["lineEdit"] = QtWidgets.QLineEdit(eval("self.tab_" + tab_b))
                     self.fields[tab_a][tab_b][field]["lineEdit"].setEnabled(True)
                     self.fields[tab_a][tab_b][field]["lineEdit"].setGeometry(QtCore.QRect(start_x + delta_x * col + delta_lineEdit, start_y + delta_y * row, 113, 20))
