@@ -1,5 +1,5 @@
 MUST HAVES
--wire select buttons to dialog
+=wire select buttons to dialog
 -wire select output location
 -skins.ini filedialog and read/write
 -wire tick buttons for gamemodes
