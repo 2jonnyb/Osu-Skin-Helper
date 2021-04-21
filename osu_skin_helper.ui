@@ -15,6 +15,9 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTabWidget" name="tabWidget_2">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -124,7 +127,7 @@
         <x>30</x>
         <y>120</y>
         <width>571</width>
-        <height>191</height>
+        <height>621</height>
        </rect>
       </property>
      </widget>
@@ -167,7 +170,7 @@
        <enum>QTabWidget::North</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="tab_main_menu">
        <attribute name="title">
@@ -177,9 +180,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>141</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -191,45 +194,6 @@
          <string>Main Menu</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="pushButton_98">
-        <property name="geometry">
-         <rect>
-          <x>160</x>
-          <y>60</y>
-          <width>75</width>
-          <height>23</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Select</string>
-        </property>
-       </widget>
-       <widget class="QLabel" name="label_98">
-        <property name="geometry">
-         <rect>
-          <x>40</x>
-          <y>60</y>
-          <width>91</width>
-          <height>16</height>
-         </rect>
-        </property>
-        <property name="text">
-         <string>Menu Background</string>
-        </property>
-       </widget>
-       <widget class="QLineEdit" name="lineEdit_98">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>270</x>
-          <y>60</y>
-          <width>113</width>
-          <height>20</height>
-         </rect>
-        </property>
-       </widget>
       </widget>
       <widget class="QWidget" name="tab_cursor">
        <attribute name="title">
@@ -239,9 +203,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>141</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -262,9 +226,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>191</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -285,9 +249,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>191</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -311,9 +275,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>191</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -334,9 +298,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>191</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -357,9 +321,9 @@
         <property name="geometry">
          <rect>
           <x>30</x>
-          <y>10</y>
+          <y>20</y>
           <width>191</width>
-          <height>41</height>
+          <height>31</height>
          </rect>
         </property>
         <property name="font">
@@ -544,7 +508,7 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_hitcircle_numbers">
        <attribute name="title">
@@ -592,29 +556,6 @@
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_slidertrack">
-       <attribute name="title">
-        <string>Slidertrack</string>
-       </attribute>
-       <widget class="QLabel" name="label_header_standard_slidertrack">
-        <property name="geometry">
-         <rect>
-          <x>30</x>
-          <y>20</y>
-          <width>141</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>20</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Slidertrack</string>
-        </property>
-       </widget>
-      </widget>
       <widget class="QWidget" name="tab_spinner">
        <attribute name="title">
         <string>Spinner</string>
@@ -635,6 +576,29 @@
         </property>
         <property name="text">
          <string>Spinner</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_slidertrack">
+       <attribute name="title">
+        <string>Slidertrack</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_standard_slidertrack">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Slidertrack</string>
         </property>
        </widget>
       </widget>
@@ -683,21 +647,93 @@
        <attribute name="title">
         <string>Stage</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_2">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Stage</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_mania_keys">
        <attribute name="title">
         <string>Keys</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Keys</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_mania_notes">
        <attribute name="title">
         <string>Notes</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_4">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Notes</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_mania_hitbursts">
        <attribute name="title">
         <string>Hitbursts</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_5">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hitbursts</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -721,36 +757,162 @@
        <attribute name="title">
         <string>Pippidon</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_6">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Pippidon</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_slider_bar">
        <attribute name="title">
         <string>Slider Bar</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_7">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Slider Bar</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_drum_bar">
        <attribute name="title">
         <string>Drum Bar</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_8">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Drum Bar</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_notes">
        <attribute name="title">
         <string>Notes</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_9">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Notes</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_drumroll">
        <attribute name="title">
         <string>Drumroll</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_10">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Drumroll</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_swell">
        <attribute name="title">
         <string>Swell</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_11">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Swell</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_taiko_hitbursts">
        <attribute name="title">
         <string>Hitbursts</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Hitbursts</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
@@ -768,17 +930,53 @@
        </rect>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tab_catch_catcher">
        <attribute name="title">
         <string>Catcher + Playfield</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_13">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>231</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Catcher + Playfield</string>
+        </property>
+       </widget>
       </widget>
       <widget class="QWidget" name="tab_catch_fruits">
        <attribute name="title">
         <string>Fruits</string>
        </attribute>
+       <widget class="QLabel" name="label_header_standard_hitbursts_14">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>141</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Fruits</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </widget>
