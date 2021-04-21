@@ -9,9 +9,74 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QWidget, QInputDialog, QFileDialog, QDialog
+from PyQt5.QtGui import QPixmap
+import add_element_01
+import cursor_editor_01
 
+
+class AddElement(QInputDialog):
+
+    #dialog_return = QtCore.pyqtSignal(str)
+
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(535, 276)
+        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
+        self.buttonBox.setGeometry(QtCore.QRect(350, 10, 151, 41))
+        self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setObjectName("buttonBox")
+        self.label_add_element = QtWidgets.QLabel(Dialog)
+        self.label_add_element.setGeometry(QtCore.QRect(10, 20, 71, 16))
+        self.label_add_element.setObjectName("label_add_element")
+        self.lineEdit_filepath = QtWidgets.QLineEdit(Dialog)
+        self.lineEdit_filepath.setGeometry(QtCore.QRect(220, 20, 113, 20))
+        self.lineEdit_filepath.setObjectName("lineEdit_filepath")
+        self.pushButton = QtWidgets.QPushButton(Dialog)
+        self.pushButton.setGeometry(QtCore.QRect(110, 20, 75, 23))
+        self.pushButton.setObjectName("pushButton")
+        self.label_preview = QtWidgets.QLabel(Dialog)
+        self.label_preview.setGeometry(QtCore.QRect(10, 60, 47, 13))
+        self.label_preview.setObjectName("label_preview")
+        self.label_image = QtWidgets.QLabel(Dialog)
+        self.label_image.setGeometry(QtCore.QRect(10, 90, 511, 171))
+        self.label_image.setText("")
+        self.label_image.setObjectName("label_image")
+
+        self.retranslateUi(Dialog)
+        self.buttonBox.accepted.connect(self.confirm)
+        self.buttonBox.accepted.connect(Dialog.accept)
+        self.buttonBox.rejected.connect(Dialog.reject)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+        ####
+
+        self.pushButton.clicked.connect(self.selectFile)
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Select Skin Element"))
+        self.label_add_element.setText(_translate("Dialog", "Add Element"))
+        self.pushButton.setText(_translate("Dialog", "Select File"))
+        self.label_preview.setText(_translate("Dialog", "Preview"))
+
+    def openFileNameDialog(self):
+        return(QFileDialog.getOpenFileName())
+
+    def selectFile(self):
+        file,_ = self.openFileNameDialog()
+        print(file)
+        self.label_image.setPixmap(QPixmap(file))
+        self.lineEdit_filepath.setText(file)
+
+    def confirm(self):
+        self.return_value = self.lineEdit_filepath.text()
+        #self.dialog_return.emit(return_value)
 
 class Ui_MainWindow(object):
+
+    dialog_return = QtCore.pyqtSignal(str)
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(647, 400)
@@ -377,6 +442,13 @@ class Ui_MainWindow(object):
         self.tabWidget_6.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+        ###############################
+
+        self.pushButton_menu_background.clicked.connect(lambda: self.add_element(self.lineEdit_menu_background))
+        self.pushButton_welcome.clicked.connect(lambda: self.add_element(self.lineEdit_welcome))
+        self.pushButton_menu_snow.clicked.connect(lambda: self.add_element(self.lineEdit_menu_snow))
+        self.pushButton_options_offset_tick.clicked.connect(lambda: self.add_element(self.lineEdit_options_offset_tick))
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Osu Skin Helper"))
@@ -458,6 +530,14 @@ class Ui_MainWindow(object):
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), _translate("MainWindow", "Completion"))
         self.actionNew_Skin.setText(_translate("MainWindow", "New Skin"))
 
+    def add_element(self, lineEdit):
+        print("AddElement")
+        Dialog = QtWidgets.QDialog()
+        ui = AddElement()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        Dialog.exec_()
+        lineEdit.setText(ui.return_value)
 
 if __name__ == "__main__":
     import sys
