@@ -21,31 +21,53 @@ class AddElement(QInputDialog):
 
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(535, 276)
-        self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
-        self.buttonBox.setGeometry(QtCore.QRect(350, 10, 151, 41))
+        Dialog.resize(678, 303)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.widget = QtWidgets.QWidget(Dialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy)
+        self.widget.setObjectName("widget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_add_element = QtWidgets.QLabel(self.widget)
+        self.label_add_element.setObjectName("label_add_element")
+        self.horizontalLayout.addWidget(self.label_add_element)
+        self.pushButton = QtWidgets.QPushButton(self.widget)
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout.addWidget(self.pushButton)
+        self.lineEdit_filepath = QtWidgets.QLineEdit(self.widget)
+        self.lineEdit_filepath.setText("")
+        self.lineEdit_filepath.setObjectName("lineEdit_filepath")
+        self.horizontalLayout.addWidget(self.lineEdit_filepath)
+        self.buttonBox = QtWidgets.QDialogButtonBox(self.widget)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.label_add_element = QtWidgets.QLabel(Dialog)
-        self.label_add_element.setGeometry(QtCore.QRect(10, 20, 71, 16))
-        self.label_add_element.setObjectName("label_add_element")
-        self.lineEdit_filepath = QtWidgets.QLineEdit(Dialog)
-        self.lineEdit_filepath.setGeometry(QtCore.QRect(220, 20, 113, 20))
-        self.lineEdit_filepath.setObjectName("lineEdit_filepath")
-        self.pushButton = QtWidgets.QPushButton(Dialog)
-        self.pushButton.setGeometry(QtCore.QRect(110, 20, 75, 23))
-        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout.addWidget(self.buttonBox)
+        self.verticalLayout.addWidget(self.widget)
         self.label_preview = QtWidgets.QLabel(Dialog)
-        self.label_preview.setGeometry(QtCore.QRect(10, 60, 47, 13))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_preview.sizePolicy().hasHeightForWidth())
+        self.label_preview.setSizePolicy(sizePolicy)
         self.label_preview.setObjectName("label_preview")
+        self.verticalLayout.addWidget(self.label_preview)
         self.label_image = QtWidgets.QLabel(Dialog)
-        self.label_image.setGeometry(QtCore.QRect(10, 90, 511, 171))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_image.sizePolicy().hasHeightForWidth())
+        self.label_image.setSizePolicy(sizePolicy)
         self.label_image.setText("")
         self.label_image.setObjectName("label_image")
+        self.verticalLayout.addWidget(self.label_image)
 
         self.retranslateUi(Dialog)
-        self.buttonBox.accepted.connect(self.confirm)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -53,12 +75,14 @@ class AddElement(QInputDialog):
 
         self.pushButton.clicked.connect(self.selectFile)
 
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Select Skin Element"))
         self.label_add_element.setText(_translate("Dialog", "Add Element"))
         self.pushButton.setText(_translate("Dialog", "Select File"))
         self.label_preview.setText(_translate("Dialog", "Preview"))
+
 
     def openFileNameDialog(self):
         return(QFileDialog.getOpenFileName())
@@ -79,11 +103,11 @@ class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(647, 400)
+        MainWindow.resize(954, 863)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.tabWidget_2 = QtWidgets.QTabWidget(self.centralwidget)
-        self.tabWidget_2.setGeometry(QtCore.QRect(0, 0, 641, 361))
+        self.tabWidget_2.setGeometry(QtCore.QRect(0, 0, 941, 841))
         self.tabWidget_2.setObjectName("tabWidget_2")
         self.tab_setup = QtWidgets.QWidget()
         self.tab_setup.setObjectName("tab_setup")
@@ -125,7 +149,7 @@ class Ui_MainWindow(object):
         self.tab_UI.setObjectName("tab_UI")
         self.tabWidget = QtWidgets.QTabWidget(self.tab_UI)
         self.tabWidget.setEnabled(True)
-        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 641, 331))
+        self.tabWidget.setGeometry(QtCore.QRect(0, 0, 941, 841))
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.North)
         self.tabWidget.setObjectName("tabWidget")
         self.tab_main_menu = QtWidgets.QWidget()
@@ -136,51 +160,21 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_header_main_menu.setFont(font)
         self.label_header_main_menu.setObjectName("label_header_main_menu")
-        self.label_menu_background = QtWidgets.QLabel(self.tab_main_menu)
-        self.label_menu_background.setGeometry(QtCore.QRect(40, 60, 91, 16))
-        self.label_menu_background.setObjectName("label_menu_background")
-        self.label_welcome = QtWidgets.QLabel(self.tab_main_menu)
-        self.label_welcome.setGeometry(QtCore.QRect(40, 100, 47, 13))
-        self.label_welcome.setObjectName("label_welcome")
-        self.label_menu_snow = QtWidgets.QLabel(self.tab_main_menu)
-        self.label_menu_snow.setGeometry(QtCore.QRect(40, 140, 61, 16))
-        self.label_menu_snow.setObjectName("label_menu_snow")
-        self.label_options_offset_tick = QtWidgets.QLabel(self.tab_main_menu)
-        self.label_options_offset_tick.setGeometry(QtCore.QRect(40, 180, 101, 16))
-        self.label_options_offset_tick.setObjectName("label_options_offset_tick")
-        self.pushButton_menu_background = QtWidgets.QPushButton(self.tab_main_menu)
-        self.pushButton_menu_background.setGeometry(QtCore.QRect(160, 60, 75, 23))
-        self.pushButton_menu_background.setObjectName("pushButton_menu_background")
-        self.pushButton_welcome = QtWidgets.QPushButton(self.tab_main_menu)
-        self.pushButton_welcome.setGeometry(QtCore.QRect(160, 100, 75, 23))
-        self.pushButton_welcome.setObjectName("pushButton_welcome")
-        self.pushButton_menu_snow = QtWidgets.QPushButton(self.tab_main_menu)
-        self.pushButton_menu_snow.setGeometry(QtCore.QRect(160, 140, 75, 23))
-        self.pushButton_menu_snow.setObjectName("pushButton_menu_snow")
-        self.pushButton_options_offset_tick = QtWidgets.QPushButton(self.tab_main_menu)
-        self.pushButton_options_offset_tick.setGeometry(QtCore.QRect(160, 180, 75, 23))
-        self.pushButton_options_offset_tick.setObjectName("pushButton_options_offset_tick")
-        self.lineEdit_menu_background = QtWidgets.QLineEdit(self.tab_main_menu)
-        self.lineEdit_menu_background.setEnabled(True)
-        self.lineEdit_menu_background.setGeometry(QtCore.QRect(270, 60, 113, 20))
-        self.lineEdit_menu_background.setObjectName("lineEdit_menu_background")
-        self.lineEdit_welcome = QtWidgets.QLineEdit(self.tab_main_menu)
-        self.lineEdit_welcome.setEnabled(True)
-        self.lineEdit_welcome.setGeometry(QtCore.QRect(270, 100, 113, 20))
-        self.lineEdit_welcome.setObjectName("lineEdit_welcome")
-        self.lineEdit_menu_snow = QtWidgets.QLineEdit(self.tab_main_menu)
-        self.lineEdit_menu_snow.setEnabled(True)
-        self.lineEdit_menu_snow.setGeometry(QtCore.QRect(270, 140, 113, 20))
-        self.lineEdit_menu_snow.setObjectName("lineEdit_menu_snow")
-        self.lineEdit_options_offset_tick = QtWidgets.QLineEdit(self.tab_main_menu)
-        self.lineEdit_options_offset_tick.setEnabled(True)
-        self.lineEdit_options_offset_tick.setGeometry(QtCore.QRect(270, 180, 113, 20))
-        self.lineEdit_options_offset_tick.setObjectName("lineEdit_options_offset_tick")
+        self.pushButton_98 = QtWidgets.QPushButton(self.tab_main_menu)
+        self.pushButton_98.setGeometry(QtCore.QRect(160, 60, 75, 23))
+        self.pushButton_98.setObjectName("pushButton_98")
+        self.label_98 = QtWidgets.QLabel(self.tab_main_menu)
+        self.label_98.setGeometry(QtCore.QRect(40, 60, 91, 16))
+        self.label_98.setObjectName("label_98")
+        self.lineEdit_98 = QtWidgets.QLineEdit(self.tab_main_menu)
+        self.lineEdit_98.setEnabled(True)
+        self.lineEdit_98.setGeometry(QtCore.QRect(270, 60, 113, 20))
+        self.lineEdit_98.setObjectName("lineEdit_98")
         self.tabWidget.addTab(self.tab_main_menu, "")
         self.tab_cursor = QtWidgets.QWidget()
         self.tab_cursor.setObjectName("tab_cursor")
         self.label_header_cursor = QtWidgets.QLabel(self.tab_cursor)
-        self.label_header_cursor.setGeometry(QtCore.QRect(30, 20, 141, 31))
+        self.label_header_cursor.setGeometry(QtCore.QRect(30, 10, 141, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_cursor.setFont(font)
@@ -189,7 +183,7 @@ class Ui_MainWindow(object):
         self.tab_song_selection = QtWidgets.QWidget()
         self.tab_song_selection.setObjectName("tab_song_selection")
         self.label_header_song_selection = QtWidgets.QLabel(self.tab_song_selection)
-        self.label_header_song_selection.setGeometry(QtCore.QRect(30, 20, 191, 31))
+        self.label_header_song_selection.setGeometry(QtCore.QRect(30, 10, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_song_selection.setFont(font)
@@ -198,7 +192,7 @@ class Ui_MainWindow(object):
         self.tab_mod_selection = QtWidgets.QWidget()
         self.tab_mod_selection.setObjectName("tab_mod_selection")
         self.label_header_mod_selection = QtWidgets.QLabel(self.tab_mod_selection)
-        self.label_header_mod_selection.setGeometry(QtCore.QRect(30, 20, 191, 31))
+        self.label_header_mod_selection.setGeometry(QtCore.QRect(30, 10, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_mod_selection.setFont(font)
@@ -208,7 +202,7 @@ class Ui_MainWindow(object):
         self.tab_gamemode.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.tab_gamemode.setObjectName("tab_gamemode")
         self.label_header_gamemode = QtWidgets.QLabel(self.tab_gamemode)
-        self.label_header_gamemode.setGeometry(QtCore.QRect(30, 20, 191, 31))
+        self.label_header_gamemode.setGeometry(QtCore.QRect(30, 10, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_gamemode.setFont(font)
@@ -217,7 +211,7 @@ class Ui_MainWindow(object):
         self.tab_grade = QtWidgets.QWidget()
         self.tab_grade.setObjectName("tab_grade")
         self.label_header_grade = QtWidgets.QLabel(self.tab_grade)
-        self.label_header_grade.setGeometry(QtCore.QRect(30, 20, 191, 31))
+        self.label_header_grade.setGeometry(QtCore.QRect(30, 10, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_grade.setFont(font)
@@ -226,7 +220,7 @@ class Ui_MainWindow(object):
         self.tab_score_numbers = QtWidgets.QWidget()
         self.tab_score_numbers.setObjectName("tab_score_numbers")
         self.label_header_score_numbers = QtWidgets.QLabel(self.tab_score_numbers)
-        self.label_header_score_numbers.setGeometry(QtCore.QRect(30, 20, 191, 31))
+        self.label_header_score_numbers.setGeometry(QtCore.QRect(30, 10, 191, 41))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_header_score_numbers.setFont(font)
@@ -236,7 +230,7 @@ class Ui_MainWindow(object):
         self.tab_gameplay = QtWidgets.QWidget()
         self.tab_gameplay.setObjectName("tab_gameplay")
         self.tabWidget_3 = QtWidgets.QTabWidget(self.tab_gameplay)
-        self.tabWidget_3.setGeometry(QtCore.QRect(0, 0, 591, 271))
+        self.tabWidget_3.setGeometry(QtCore.QRect(0, 0, 941, 821))
         self.tabWidget_3.setObjectName("tabWidget_3")
         self.tab_pause_screen = QtWidgets.QWidget()
         self.tab_pause_screen.setObjectName("tab_pause_screen")
@@ -296,7 +290,7 @@ class Ui_MainWindow(object):
         self.tab_standard = QtWidgets.QWidget()
         self.tab_standard.setObjectName("tab_standard")
         self.tabWidget_4 = QtWidgets.QTabWidget(self.tab_standard)
-        self.tabWidget_4.setGeometry(QtCore.QRect(0, 0, 641, 301))
+        self.tabWidget_4.setGeometry(QtCore.QRect(0, 0, 941, 821))
         self.tabWidget_4.setObjectName("tabWidget_4")
         self.tab_hitcircle_numbers = QtWidgets.QWidget()
         self.tab_hitcircle_numbers.setObjectName("tab_hitcircle_numbers")
@@ -347,7 +341,7 @@ class Ui_MainWindow(object):
         self.tab_mania = QtWidgets.QWidget()
         self.tab_mania.setObjectName("tab_mania")
         self.tabWidget_7 = QtWidgets.QTabWidget(self.tab_mania)
-        self.tabWidget_7.setGeometry(QtCore.QRect(0, 0, 641, 301))
+        self.tabWidget_7.setGeometry(QtCore.QRect(0, 0, 941, 821))
         self.tabWidget_7.setObjectName("tabWidget_7")
         self.tab_mania_stage = QtWidgets.QWidget()
         self.tab_mania_stage.setObjectName("tab_mania_stage")
@@ -365,7 +359,7 @@ class Ui_MainWindow(object):
         self.tab_taiko = QtWidgets.QWidget()
         self.tab_taiko.setObjectName("tab_taiko")
         self.tabWidget_5 = QtWidgets.QTabWidget(self.tab_taiko)
-        self.tabWidget_5.setGeometry(QtCore.QRect(0, 0, 641, 301))
+        self.tabWidget_5.setGeometry(QtCore.QRect(0, 0, 941, 821))
         self.tabWidget_5.setObjectName("tabWidget_5")
         self.tab_taiko_pippidon = QtWidgets.QWidget()
         self.tab_taiko_pippidon.setObjectName("tab_taiko_pippidon")
@@ -392,7 +386,7 @@ class Ui_MainWindow(object):
         self.tab_catch = QtWidgets.QWidget()
         self.tab_catch.setObjectName("tab_catch")
         self.tabWidget_6 = QtWidgets.QTabWidget(self.tab_catch)
-        self.tabWidget_6.setGeometry(QtCore.QRect(0, 0, 641, 301))
+        self.tabWidget_6.setGeometry(QtCore.QRect(0, 0, 941, 821))
         self.tabWidget_6.setObjectName("tabWidget_6")
         self.tab_catch_catcher = QtWidgets.QWidget()
         self.tab_catch_catcher.setObjectName("tab_catch_catcher")
@@ -401,36 +395,94 @@ class Ui_MainWindow(object):
         self.tab_catch_fruits.setObjectName("tab_catch_fruits")
         self.tabWidget_6.addTab(self.tab_catch_fruits, "")
         self.tabWidget_2.addTab(self.tab_catch, "")
-        self.tab = QtWidgets.QWidget()
-        self.tab.setObjectName("tab")
-        self.label_completion = QtWidgets.QLabel(self.tab)
+        self.tab_completion = QtWidgets.QWidget()
+        self.tab_completion.setObjectName("tab_completion")
+        self.label_completion = QtWidgets.QLabel(self.tab_completion)
         self.label_completion.setGeometry(QtCore.QRect(30, 20, 141, 31))
         font = QtGui.QFont()
         font.setPointSize(20)
         self.label_completion.setFont(font)
         self.label_completion.setObjectName("label_completion")
-        self.label_output_folder = QtWidgets.QLabel(self.tab)
+        self.label_output_folder = QtWidgets.QLabel(self.tab_completion)
         self.label_output_folder.setGeometry(QtCore.QRect(30, 60, 121, 21))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.label_output_folder.setFont(font)
         self.label_output_folder.setObjectName("label_output_folder")
-        self.pushButton_output_folder = QtWidgets.QPushButton(self.tab)
+        self.pushButton_output_folder = QtWidgets.QPushButton(self.tab_completion)
         self.pushButton_output_folder.setGeometry(QtCore.QRect(420, 60, 75, 23))
         self.pushButton_output_folder.setObjectName("pushButton_output_folder")
-        self.lineEdit_output_folder = QtWidgets.QLineEdit(self.tab)
+        self.lineEdit_output_folder = QtWidgets.QLineEdit(self.tab_completion)
         self.lineEdit_output_folder.setGeometry(QtCore.QRect(160, 60, 241, 20))
         self.lineEdit_output_folder.setObjectName("lineEdit_output_folder")
-        self.pushButton_create_skin = QtWidgets.QPushButton(self.tab)
+        self.pushButton_create_skin = QtWidgets.QPushButton(self.tab_completion)
         self.pushButton_create_skin.setGeometry(QtCore.QRect(260, 130, 111, 41))
         self.pushButton_create_skin.setObjectName("pushButton_create_skin")
-        self.tabWidget_2.addTab(self.tab, "")
+        self.tabWidget_2.addTab(self.tab_completion, "")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
         self.actionNew_Skin = QtWidgets.QAction(MainWindow)
         self.actionNew_Skin.setObjectName("actionNew_Skin")
+
+        ######################USER
+        self.fields = {  "UI": {
+                        "main_menu" : {
+                            "Menu Background": {},
+                            "Welcome" : {},
+                            "Menu Snow": {},
+                            "Options Offset Tick" : {}
+                        },
+                        "cursor" : {
+                            "Cursor" : {},
+                            "Cursor Trail" : {},
+                            "Cursor Middle" : {},
+                            "Cursor Smoke" : {},
+                            "Cursor Ripple" : {}
+                        },
+                        "song_selection" : {},
+                        "mod_selection" : {},
+                        "gamemode" : {},
+                        "grade" : {},
+                        "score_numbers" : {}
+                    },
+                    "gameplay" : {
+                        "pause_screen" : {},
+                        "scorebar" : {},
+                        "countdown" : {},
+                        "leaderboard" : {},
+                        "playfield" : {},
+                        "key_counter" : {}
+                    },
+                    "standard" : {
+                        "hitcircle_numbers" : {},
+                        "slidertrack" : {},
+                        "spinner" : {},
+                        "hitbursts" : {}
+                    },
+                    "mania" : {
+                        "mania_stage" : {},
+                        "mania_keys" : {},
+                        "mania_notes" : {},
+                        "mania_hitbursts" : {}
+                    },
+                    "taiko" : {
+                        "taiko_pippidon" : {},
+                        "taiko_slider_bar" : {},
+                        "taiko_drum_bar" : {},
+                        "taiko_notes" : {},
+                        "taiko_drumroll" : {},
+                        "taiko_swell" : {},
+                        "taiko_hitbursts" : {}
+                    },
+                    "catch" : {
+                        "catch_catcher" : {},
+                        "catch_fruits" : {}
+                    }
+                    }
+        self.createFields()
+        #####################NON USER
 
         self.retranslateUi(MainWindow)
         self.tabWidget_2.setCurrentIndex(1)
@@ -444,10 +496,13 @@ class Ui_MainWindow(object):
 
         ###############################
 
-        self.pushButton_menu_background.clicked.connect(lambda: self.add_element(self.lineEdit_menu_background))
-        self.pushButton_welcome.clicked.connect(lambda: self.add_element(self.lineEdit_welcome))
-        self.pushButton_menu_snow.clicked.connect(lambda: self.add_element(self.lineEdit_menu_snow))
-        self.pushButton_options_offset_tick.clicked.connect(lambda: self.add_element(self.lineEdit_options_offset_tick))
+        #self.pushButton_menu_background.clicked.connect(lambda: self.add_element(self.lineEdit_menu_background))
+        #self.pushButton_welcome.clicked.connect(lambda: self.add_element(self.lineEdit_welcome))
+        #self.pushButton_menu_snow.clicked.connect(lambda: self.add_element(self.lineEdit_menu_snow))
+        #self.pushButton_options_offset_tick.clicked.connect(lambda: self.add_element(self.lineEdit_options_offset_tick))
+
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -461,14 +516,8 @@ class Ui_MainWindow(object):
         self.label_skin_ini.setText(_translate("MainWindow", "skin.ini"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_setup), _translate("MainWindow", "Setup"))
         self.label_header_main_menu.setText(_translate("MainWindow", "Main Menu"))
-        self.label_menu_background.setText(_translate("MainWindow", "Menu Background"))
-        self.label_welcome.setText(_translate("MainWindow", "Welcome Text"))
-        self.label_menu_snow.setText(_translate("MainWindow", "Menu Snow"))
-        self.label_options_offset_tick.setText(_translate("MainWindow", "Options Offset Tick"))
-        self.pushButton_menu_background.setText(_translate("MainWindow", "Select"))
-        self.pushButton_welcome.setText(_translate("MainWindow", "Select"))
-        self.pushButton_menu_snow.setText(_translate("MainWindow", "Select"))
-        self.pushButton_options_offset_tick.setText(_translate("MainWindow", "Select"))
+        self.pushButton_98.setText(_translate("MainWindow", "Select"))
+        self.label_98.setText(_translate("MainWindow", "Menu Background"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main_menu), _translate("MainWindow", "Main Menu"))
         self.label_header_cursor.setText(_translate("MainWindow", "Cursor"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_cursor), _translate("MainWindow", "Cursor"))
@@ -527,8 +576,103 @@ class Ui_MainWindow(object):
         self.label_output_folder.setText(_translate("MainWindow", "Output Location"))
         self.pushButton_output_folder.setText(_translate("MainWindow", "Select"))
         self.pushButton_create_skin.setText(_translate("MainWindow", "Create Skin!"))
-        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab), _translate("MainWindow", "Completion"))
+        self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_completion), _translate("MainWindow", "Completion"))
         self.actionNew_Skin.setText(_translate("MainWindow", "New Skin"))
+        ##########################################
+        """self.fields = {  "UI": {
+                        "main_menu" : {
+                            "Menu Background": {},
+                            "Welcome" : {},
+                            "Menu Snow": {},
+                            "Options Offset Tick" : {}
+                        },
+                        "cursor" : {
+                            "Cursor" : {},
+                            "Cursor Trail" : {},
+                            "Cursor Middle" : {},
+                            "Cursor Smoke" : {},
+                            "Cursor Ripple" : {}
+                        },
+                        "song_selection" : {},
+                        "mod_selection" : {},
+                        "gamemode" : {},
+                        "grade" : {},
+                        "score_numbers" : {}
+                    },
+                    "gameplay" : {
+                        "pause_screen" : {},
+                        "scorebar" : {},
+                        "countdown" : {},
+                        "leaderboard" : {},
+                        "playfield" : {},
+                        "key_counter" : {}
+                    },
+                    "standard" : {
+                        "hitcircle_numbers" : {},
+                        "slidertrack" : {},
+                        "spinner" : {},
+                        "hitbursts" : {}
+                    },
+                    "mania" : {
+                        "mania_stage" : {},
+                        "mania_keys" : {},
+                        "mania_notes" : {},
+                        "mania_hitbursts" : {}
+                    },
+                    "taiko" : {
+                        "taiko_pippidon" : {},
+                        "taiko_slider_bar" : {},
+                        "taiko_drum_bar" : {},
+                        "taiko_notes" : {},
+                        "taiko_drumroll" : {},
+                        "taiko_swell" : {},
+                        "taiko_hitbursts" : {}
+                    },
+                    "catch" : {
+                        "catch_catcher" : {},
+                        "catch_fruits" : {}
+                    }
+                    }"""
+        self.addUiText()
+
+
+    def createFields(self):
+        start_x = 40
+        start_y = 60
+        delta_x = 410
+        delta_y = 40
+        delta_lineEdit = 230
+        delta_pushButton = 120
+        for tab_a in self.fields:
+            for tab_b in self.fields[tab_a]:
+                i = 0
+                for field in self.fields[tab_a][tab_b]:
+                    row = int(i / 2)
+                    col = i % 2
+
+                    #self.lineEdit_menu_snow = QtWidgets.QLineEdit(self.tab_main_menu)
+                    m = globals()['MainWindow']
+                    #print(m.children.centralwidget.children())
+                    #print(list(b.children()) for b in list(a for a in m.children()))
+                    print(row,col)
+                    self.fields[tab_a][tab_b][field]["lineEdit"] = QtWidgets.QLineEdit(eval("self.tab_" + tab_b))
+                    self.fields[tab_a][tab_b][field]["lineEdit"].setEnabled(True)
+                    self.fields[tab_a][tab_b][field]["lineEdit"].setGeometry(QtCore.QRect(start_x + delta_x * col + delta_lineEdit, start_y + delta_y * row, 113, 20))
+                    self.fields[tab_a][tab_b][field]["lineEdit"].setObjectName("lineEdit_" + field)
+                    self.fields[tab_a][tab_b][field]["label"] = QtWidgets.QLabel(eval("self.tab_" + tab_b))
+                    self.fields[tab_a][tab_b][field]["label"].setGeometry(QtCore.QRect(start_x + delta_x * col , start_y + delta_y * row, 111, 16))
+                    self.fields[tab_a][tab_b][field]["label"].setObjectName("label_" + field)
+                    self.fields[tab_a][tab_b][field]["pushButton"] = QtWidgets.QPushButton(eval("self.tab_" + tab_b))
+                    self.fields[tab_a][tab_b][field]["pushButton"].setGeometry(QtCore.QRect(start_x + delta_x * col + delta_pushButton, start_y + delta_y * row, 75, 23))
+                    self.fields[tab_a][tab_b][field]["pushButton"].setObjectName("pushButton_" + field)
+                    i += 1
+
+    def addUiText(self):
+        for tab_a in self.fields:
+            for tab_b in self.fields[tab_a]:
+                for field in self.fields[tab_a][tab_b]:
+                    self.fields[tab_a][tab_b][field]["label"].setText(field)
+                    self.fields[tab_a][tab_b][field]["pushButton"].setText("Select")
 
     def add_element(self, lineEdit):
         print("AddElement")
@@ -537,7 +681,10 @@ class Ui_MainWindow(object):
         ui.setupUi(Dialog)
         Dialog.show()
         Dialog.exec_()
-        lineEdit.setText(ui.return_value)
+        try:
+            lineEdit.setText(ui.return_value)
+        except:
+            pass
 
 if __name__ == "__main__":
     import sys
