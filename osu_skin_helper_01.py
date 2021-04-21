@@ -433,6 +433,7 @@ class Ui_MainWindow(object):
         with open('fields.json','r') as f:
             self.fields = json.loads(f.read())
         self.createFields()
+        print("complete")
         #####################NON USER
 
         self.retranslateUi(MainWindow)
@@ -610,7 +611,9 @@ class Ui_MainWindow(object):
                     self.fields[tab_a][tab_b][field]["pushButton"] = QtWidgets.QPushButton(eval("self.tab_" + tab_b))
                     self.fields[tab_a][tab_b][field]["pushButton"].setGeometry(QtCore.QRect(start_x + delta_x * col + delta_pushButton, start_y + delta_y * row, 75, 23))
                     self.fields[tab_a][tab_b][field]["pushButton"].setObjectName("pushButton_" + field)
-                    self.fields[tab_a][tab_b][field]["pushButton"].clicked.connect(lambda: self.add_element(self.fields[tab_a][tab_b][field]["lineEdit"]))
+
+                    lineEdit = self.fields[tab_a][tab_b][field]["lineEdit"]
+                    self.fields[tab_a][tab_b][field]["pushButton"].clicked.connect(lambda ignore,tab_a=tab_a,tab_b=tab_b,field=field: self.add_element(self.fields[tab_a][tab_b][field]["lineEdit"]))
                     i += 1
 
     def addUiText(self):
@@ -622,16 +625,17 @@ class Ui_MainWindow(object):
 
     def add_element(self, lineEdit):
         print("AddElement")
+        print(lineEdit)
         Dialog = QtWidgets.QDialog()
         ui = AddElement()
         ui.setupUi(Dialog)
         Dialog.show()
         Dialog.exec_()
         try:
-            lineEdit.setText(ui.return_value)
             print("recieved", ui.return_value)
+            lineEdit.setText(ui.return_value)
         except:
-            pass
+            print("failed to update")
 
 if __name__ == "__main__":
     import sys
