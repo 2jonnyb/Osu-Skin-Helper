@@ -5,15 +5,18 @@ MUST HAVES
 #wire tick buttons for gamemodes
 ~completion process
   =create folder for skin
-  -add skin.ini
-  -populate with copies of images
+  =add skin.ini
+  =populate with copies of images
   -create downscaled SD version of each element
 
 -audio
-
+-handle numbered elements
+-create header labels
 
 NICE TO HAVES
 -dynamic window
 -icon
 -existing gallery
 -advanced skin.ini setup
+-smart element selector
+-choose skin in progress, fill completed items
