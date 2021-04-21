@@ -452,7 +452,7 @@ class Ui_MainWindow(object):
         #self.pushButton_welcome.clicked.connect(lambda: self.add_element(self.lineEdit_welcome))
         #self.pushButton_menu_snow.clicked.connect(lambda: self.add_element(self.lineEdit_menu_snow))
         #self.pushButton_options_offset_tick.clicked.connect(lambda: self.add_element(self.lineEdit_options_offset_tick))
-
+        self.pushButton_output_folder.clicked.connect(lambda: self.selectDirectory(self.lineEdit_output_folder))
 
 
 
@@ -636,6 +636,22 @@ class Ui_MainWindow(object):
             lineEdit.setText(ui.return_value)
         except:
             print("failed to update")
+
+    def openFileNameDialog(self):
+        return(QFileDialog.getOpenFileName())
+
+    def openDirectoryDialog(self):
+        return(str(QFileDialog.getExistingDirectory(None, "Select Folder")))
+
+    def selectFile(self, lineEdit):
+        file,_ = self.openFileNameDialog()
+        print(file)
+        lineEdit.setText(file)
+
+    def selectDirectory(self, lineEdit):
+        file = self.openDirectoryDialog()
+        print(file)
+        lineEdit.setText(file)
 
 if __name__ == "__main__":
     import sys
