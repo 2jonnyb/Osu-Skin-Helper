@@ -9,13 +9,14 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QWidget, QInputDialog, QFileDialog, QDialog
+from PyQt5.QtWidgets import QWidget, QInputDialog, QFileDialog, QDialog, QMessageBox
 from PyQt5.QtGui import QPixmap
 import add_element_01
 import cursor_editor_01
 
 import json
-
+import os
+import shutil
 
 class AddElement(QInputDialog):
 
@@ -120,27 +121,27 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_title.setFont(font)
         self.label_title.setObjectName("label_title")
-        self.label_modes = QtWidgets.QLabel(self.tab_setup)
-        self.label_modes.setGeometry(QtCore.QRect(30, 60, 51, 16))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.label_modes.setFont(font)
-        self.label_modes.setObjectName("label_modes")
-        self.checkBox = QtWidgets.QCheckBox(self.tab_setup)
-        self.checkBox.setGeometry(QtCore.QRect(90, 60, 70, 17))
-        self.checkBox.setObjectName("checkBox")
-        self.checkBox_2 = QtWidgets.QCheckBox(self.tab_setup)
-        self.checkBox_2.setGeometry(QtCore.QRect(180, 60, 70, 17))
-        self.checkBox_2.setObjectName("checkBox_2")
-        self.checkBox_3 = QtWidgets.QCheckBox(self.tab_setup)
-        self.checkBox_3.setGeometry(QtCore.QRect(270, 60, 70, 17))
-        self.checkBox_3.setObjectName("checkBox_3")
-        self.checkBox_4 = QtWidgets.QCheckBox(self.tab_setup)
-        self.checkBox_4.setGeometry(QtCore.QRect(350, 60, 70, 17))
-        self.checkBox_4.setObjectName("checkBox_4")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.tab_setup)
-        self.plainTextEdit.setGeometry(QtCore.QRect(30, 120, 571, 191))
-        self.plainTextEdit.setObjectName("plainTextEdit")
+        # self.label_modes = QtWidgets.QLabel(self.tab_setup)
+        # self.label_modes.setGeometry(QtCore.QRect(30, 60, 51, 16))
+        # font = QtGui.QFont()
+        # font.setPointSize(12)
+        # self.label_modes.setFont(font)
+        # self.label_modes.setObjectName("label_modes")
+        # self.checkBox = QtWidgets.QCheckBox(self.tab_setup)
+        # self.checkBox.setGeometry(QtCore.QRect(90, 60, 70, 17))
+        # self.checkBox.setObjectName("checkBox")
+        # self.checkBox_2 = QtWidgets.QCheckBox(self.tab_setup)
+        # self.checkBox_2.setGeometry(QtCore.QRect(180, 60, 70, 17))
+        # self.checkBox_2.setObjectName("checkBox_2")
+        # self.checkBox_3 = QtWidgets.QCheckBox(self.tab_setup)
+        # self.checkBox_3.setGeometry(QtCore.QRect(270, 60, 70, 17))
+        # self.checkBox_3.setObjectName("checkBox_3")
+        # self.checkBox_4 = QtWidgets.QCheckBox(self.tab_setup)
+        # self.checkBox_4.setGeometry(QtCore.QRect(350, 60, 70, 17))
+        # self.checkBox_4.setObjectName("checkBox_4")
+        self.plainTextEdit_skin_ini = QtWidgets.QPlainTextEdit(self.tab_setup)
+        self.plainTextEdit_skin_ini.setGeometry(QtCore.QRect(30, 120, 600, 600))
+        self.plainTextEdit_skin_ini.setObjectName("plainTextEdit_skin_ini")
         self.label_skin_ini = QtWidgets.QLabel(self.tab_setup)
         self.label_skin_ini.setGeometry(QtCore.QRect(30, 90, 61, 16))
         font = QtGui.QFont()
@@ -163,16 +164,6 @@ class Ui_MainWindow(object):
         font.setPointSize(20)
         self.label_header_main_menu.setFont(font)
         self.label_header_main_menu.setObjectName("label_header_main_menu")
-        self.pushButton_98 = QtWidgets.QPushButton(self.tab_main_menu)
-        self.pushButton_98.setGeometry(QtCore.QRect(160, 60, 75, 23))
-        self.pushButton_98.setObjectName("pushButton_98")
-        self.label_98 = QtWidgets.QLabel(self.tab_main_menu)
-        self.label_98.setGeometry(QtCore.QRect(40, 60, 91, 16))
-        self.label_98.setObjectName("label_98")
-        self.lineEdit_98 = QtWidgets.QLineEdit(self.tab_main_menu)
-        self.lineEdit_98.setEnabled(True)
-        self.lineEdit_98.setGeometry(QtCore.QRect(270, 60, 113, 20))
-        self.lineEdit_98.setObjectName("lineEdit_98")
         self.tabWidget.addTab(self.tab_main_menu, "")
         self.tab_cursor = QtWidgets.QWidget()
         self.tab_cursor.setObjectName("tab_cursor")
@@ -437,13 +428,13 @@ class Ui_MainWindow(object):
         #####################NON USER
 
         self.retranslateUi(MainWindow)
-        self.tabWidget_2.setCurrentIndex(1)
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget_2.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(0)
         self.tabWidget_3.setCurrentIndex(0)
         self.tabWidget_4.setCurrentIndex(0)
         self.tabWidget_7.setCurrentIndex(0)
-        self.tabWidget_5.setCurrentIndex(6)
-        self.tabWidget_6.setCurrentIndex(1)
+        self.tabWidget_5.setCurrentIndex(0)
+        self.tabWidget_6.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
         ###############################
@@ -453,23 +444,23 @@ class Ui_MainWindow(object):
         #self.pushButton_menu_snow.clicked.connect(lambda: self.add_element(self.lineEdit_menu_snow))
         #self.pushButton_options_offset_tick.clicked.connect(lambda: self.add_element(self.lineEdit_options_offset_tick))
         self.pushButton_output_folder.clicked.connect(lambda: self.selectDirectory(self.lineEdit_output_folder))
-
+        with open('skin.ini', 'r') as f:
+            self.plainTextEdit_skin_ini.document().setPlainText(f.read())
+        self.pushButton_create_skin.clicked.connect(lambda: self.complete_skin())
 
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Osu Skin Helper"))
         self.label_title.setText(_translate("MainWindow", "Osu Skin Helper"))
-        self.label_modes.setText(_translate("MainWindow", "Modes"))
-        self.checkBox.setText(_translate("MainWindow", "Standard"))
-        self.checkBox_2.setText(_translate("MainWindow", "Mania"))
-        self.checkBox_3.setText(_translate("MainWindow", "Taiko"))
-        self.checkBox_4.setText(_translate("MainWindow", "Catch"))
+        # self.label_modes.setText(_translate("MainWindow", "Modes"))
+        # self.checkBox.setText(_translate("MainWindow", "Standard"))
+        # self.checkBox_2.setText(_translate("MainWindow", "Mania"))
+        # self.checkBox_3.setText(_translate("MainWindow", "Taiko"))
+        # self.checkBox_4.setText(_translate("MainWindow", "Catch"))
         self.label_skin_ini.setText(_translate("MainWindow", "skin.ini"))
         self.tabWidget_2.setTabText(self.tabWidget_2.indexOf(self.tab_setup), _translate("MainWindow", "Setup"))
         self.label_header_main_menu.setText(_translate("MainWindow", "Main Menu"))
-        self.pushButton_98.setText(_translate("MainWindow", "Select"))
-        self.label_98.setText(_translate("MainWindow", "Menu Background"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_main_menu), _translate("MainWindow", "Main Menu"))
         self.label_header_cursor.setText(_translate("MainWindow", "Cursor"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_cursor), _translate("MainWindow", "Cursor"))
@@ -652,6 +643,39 @@ class Ui_MainWindow(object):
         file = self.openDirectoryDialog()
         print(file)
         lineEdit.setText(file)
+
+    def complete_skin(self):
+        skin_ini = self.plainTextEdit_skin_ini.toPlainText()
+        skin_ini_lines = skin_ini.split('\n')
+        for line in skin_ini_lines:
+            if (line[:4] == "Name"):
+                skin_name = line[5:]
+        output_dir = "/".join([self.lineEdit_output_folder.text(), skin_name])
+        if not os.path.exists(output_dir):
+            os.mkdir(output_dir)
+        os.chdir(output_dir)
+        for tab_a in self.fields:
+            for tab_b in self.fields[tab_a]:
+                i = 0
+                for field in self.fields[tab_a][tab_b]:
+                    loc = self.fields[tab_a][tab_b][field]["lineEdit"].text()
+                    if loc:
+                        print(loc)
+                        shutil.copyfile(loc, output_dir)
+
+        with open("/".join([output_dir, "skin.ini"]), "w") as f:
+            f.write(skin_ini)
+
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+
+        msg.setText("Skin created!")
+        msg.setInformativeText("Remember to convert to an .osk if you want to share it.")
+        msg.setWindowTitle("Skin complete!")
+        msg.setStandardButtons(QMessageBox.Ok)
+        msg.buttonClicked.connect(lambda: MainWindow.close())
+        msg.exec_()
+
 
 if __name__ == "__main__":
     import sys

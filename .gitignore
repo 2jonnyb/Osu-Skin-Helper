@@ -129,13 +129,14 @@ dmypy.json
 .pyre/
 
 # Project Files
+practise/
+Dumps/
 
 Skinnable Files - Detailed List.url
 pyuic5.txt
 designer - Shortcut.lnk
 Anaconda Navigator (anaconda3).lnk
 default-2@2x.png
-practise/
 osu!Default Skin/
 Skins.lnk
 preview.png
