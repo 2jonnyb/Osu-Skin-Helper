@@ -1,0 +1,18 @@
+MUST HAVES
+-wire select buttons to dialog
+-wire select output location
+-skins.ini filedialog and read/write
+-wire tick buttons for gamemodes
+-completion process
+  -create folder for skin
+  -add skin.ini
+  -populate with copies of images
+  -create downscaled SD version of each element
+
+-audio
+
+
+NICE TO HAVES
+-dynamic window
+-icon
+-existing gallery

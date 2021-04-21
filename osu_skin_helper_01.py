@@ -70,6 +70,7 @@ class AddElement(QInputDialog):
         self.verticalLayout.addWidget(self.label_image)
 
         self.retranslateUi(Dialog)
+        self.buttonBox.accepted.connect(self.confirm)
         self.buttonBox.accepted.connect(Dialog.accept)
         self.buttonBox.rejected.connect(Dialog.reject)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
@@ -101,7 +102,7 @@ class AddElement(QInputDialog):
 
 class Ui_MainWindow(object):
 
-    dialog_return = QtCore.pyqtSignal(str)
+    #dialog_return = QtCore.pyqtSignal(str)
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -609,6 +610,7 @@ class Ui_MainWindow(object):
                     self.fields[tab_a][tab_b][field]["pushButton"] = QtWidgets.QPushButton(eval("self.tab_" + tab_b))
                     self.fields[tab_a][tab_b][field]["pushButton"].setGeometry(QtCore.QRect(start_x + delta_x * col + delta_pushButton, start_y + delta_y * row, 75, 23))
                     self.fields[tab_a][tab_b][field]["pushButton"].setObjectName("pushButton_" + field)
+                    self.fields[tab_a][tab_b][field]["pushButton"].clicked.connect(lambda: self.add_element(self.fields[tab_a][tab_b][field]["lineEdit"]))
                     i += 1
 
     def addUiText(self):
@@ -627,6 +629,7 @@ class Ui_MainWindow(object):
         Dialog.exec_()
         try:
             lineEdit.setText(ui.return_value)
+            print("recieved", ui.return_value)
         except:
             pass
 
