@@ -8,6 +8,7 @@ MUST HAVES
   =add skin.ini
   =populate with copies of images
   -create downscaled SD version of each element
+  -resize to appropriate size
 
 -audio
 -handle numbered elements

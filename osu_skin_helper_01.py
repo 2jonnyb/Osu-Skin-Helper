@@ -730,8 +730,10 @@ class Ui_MainWindow(object):
                     loc = self.fields[tab_a][tab_b][field]["lineEdit"].text()
                     if loc:
                         print(loc)
-                        shutil.copyfile(loc, output_dir)
-
+                        try:
+                            shutil.copyfile(loc, "/".join([output_dir, "".join([field, ".".join(["@2x","png"])])]))
+                        except:
+                            print("invalid file name probably...")
         with open("/".join([output_dir, "skin.ini"]), "w") as f:
             f.write(skin_ini)
 
@@ -739,7 +741,7 @@ class Ui_MainWindow(object):
         msg.setIcon(QMessageBox.Information)
 
         msg.setText("Skin created!")
-        msg.setInformativeText("Remember to convert to an .osk if you want to share it.")
+        msg.setInformativeText("    Remember to convert to an .osk if you want to share it.")
         msg.setWindowTitle("Skin complete!")
         msg.setStandardButtons(QMessageBox.Ok)
         msg.buttonClicked.connect(lambda: MainWindow.close())
