@@ -14,6 +14,12 @@ MUST HAVES
 -handle numbered elements
 -create header labels
 
+~element picker
+  -resize maintain aspect ratio
+  -numbered elements
+  -dynamic sd/hd (show highest avaiable and choose appropriate)
+  -wire to main window
+
 NICE TO HAVES
 -dynamic window
 -icon
