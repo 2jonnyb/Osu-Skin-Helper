@@ -70,7 +70,7 @@ class Ui_Dialog(object):
 
     def createElements(self):
         skin_folder = r'D:/osu!/Skins'
-        element = 'ranking-panel@2x.png'
+        element = 'ranking-panel'
         max_image_height = 132
         max_image_width = 235
 
@@ -80,15 +80,20 @@ class Ui_Dialog(object):
         for skin in skins:
 
             self.containers[skin] = {}
-            img_loc = "/".join([skin_folder,skin,element])
             try:
                 skin_dir = os.listdir("/".join([skin_folder,skin]))
             except:
                 #print("".join([skin_folder,skin," is not a folder"]))
                 pass
             else:
-                if element in skin_dir:
+                if "".join([element, ".png"]) not in skin_dir and "".join([element, "@2x.png"]) in skin_dir:
+                    img_loc = False
+                elif "".join([element, "@2x.png"]) in skin_dir:
+                    img_loc = "".join([skin_folder,"/",skin,"/",element,"@2x.png"])
+                elif "".join([element, ".png"]) in skin_dir:
+                    img_loc = "".join([skin_folder,"/",skin,"/",element,".png"])
                     # create elements
+                if img_loc:
                     self.containers[skin]["widget_element"] = QtWidgets.QWidget(self.scrollAreaWidgetContents)
                     sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
                     sizePolicy.setHorizontalStretch(0)
@@ -111,8 +116,6 @@ class Ui_Dialog(object):
                     self.containers[skin]["pushButton_select"].setMaximumSize(QtCore.QSize(100, 16777215))
                     self.containers[skin]["pushButton_select"].setObjectName("".join(["pushButton_select",skin]))
                     self.containers[skin]["horizontalLayout"].addWidget(self.containers[skin]["pushButton_select"])
-
-
                     # set images
                     preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
                     original_width, original_height = preview.size
