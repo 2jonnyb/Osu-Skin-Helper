@@ -114,7 +114,16 @@ class Ui_Dialog(object):
 
 
                     # set images
-                    preview = Image.open(img_loc).resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                    preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                    original_width, original_height = preview.size
+                    width_ratio = original_width/max_image_width
+                    height_ratio = original_height/max_image_height
+                    if (width_ratio > height_ratio):
+                        preview = preview.resize((max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+                    elif (height_ratio > width_ratio):
+                        preview = preview.resize((int(original_width/height_ratio), max_image_height), Image.ANTIALIAS)
+                    else:
+                        preview = preview.resize((max_image_width, max_image_height), Image.ANTIALIAS)
                     preview.save("element_preview.png")
                     self.containers[skin]["label_image"].setPixmap(QPixmap("element_preview.png"))
                     self.elements[skin] = img_loc

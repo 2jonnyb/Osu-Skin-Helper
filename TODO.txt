@@ -15,7 +15,7 @@ MUST HAVES
 -create header labels
 
 ~element picker
-  -resize maintain aspect ratio
+  =resize maintain aspect ratio
   -numbered elements
   -dynamic sd/hd (show highest avaiable and choose appropriate)
   -wire to main window
