@@ -19,6 +19,7 @@ MUST HAVES
   -numbered elements
   =dynamic sd/hd (show highest avaiable and choose appropriate)
   -wire to main window
+  -add search
 
 NICE TO HAVES
 -dynamic window

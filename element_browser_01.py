@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from PyQt5.QtWidgets import QWidget, QInputDialog, QFileDialog, QDialog, QMessageBox
 from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import QTimer
 import add_element_01
 import cursor_editor_01
 
@@ -60,6 +61,10 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
+        ############
+
+        QTimer.singleShot(1,self.postLoadFunctions)
+
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
@@ -69,29 +74,31 @@ class Ui_Dialog(object):
         self.addUiText()
 
     def createElements(self):
-        skin_folder = r'D:/osu!/Skins'
-        element = 'ranking-panel'
-        max_image_height = 132
-        max_image_width = 235
+        self.skin_folder = r'D:/osu!/Skins - Archive'
+        self.element = 'ranking-panel'
+        self.loading = 'loading.png'
+        self.pre_load = False
+        self.max_image_height = 132
+        self.max_image_width = 235
 
         self.elements = {} # format {skin name : image object}
-        skins = os.listdir(skin_folder)
+        skins = os.listdir(self.skin_folder)
 
         for skin in skins:
 
             self.containers[skin] = {}
             try:
-                skin_dir = os.listdir("/".join([skin_folder,skin]))
+                skin_dir = os.listdir("/".join([self.skin_folder,skin]))
             except:
                 #print("".join([skin_folder,skin," is not a folder"]))
                 pass
             else:
-                if "".join([element, ".png"]) not in skin_dir and "".join([element, "@2x.png"]) in skin_dir:
+                if "".join([self.element, ".png"]) not in skin_dir and "".join([self.element, "@2x.png"]) in skin_dir:
                     img_loc = False
-                elif "".join([element, "@2x.png"]) in skin_dir:
-                    img_loc = "".join([skin_folder,"/",skin,"/",element,"@2x.png"])
-                elif "".join([element, ".png"]) in skin_dir:
-                    img_loc = "".join([skin_folder,"/",skin,"/",element,".png"])
+                elif "".join([self.element, "@2x.png"]) in skin_dir:
+                    img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,"@2x.png"])
+                elif "".join([self.element, ".png"]) in skin_dir:
+                    img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".png"])
                     # create elements
                 if img_loc:
                     self.containers[skin]["widget_element"] = QtWidgets.QWidget(self.scrollAreaWidgetContents)
@@ -117,18 +124,27 @@ class Ui_Dialog(object):
                     self.containers[skin]["pushButton_select"].setObjectName("".join(["pushButton_select",skin]))
                     self.containers[skin]["horizontalLayout"].addWidget(self.containers[skin]["pushButton_select"])
                     # set images
-                    preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
-                    original_width, original_height = preview.size
-                    width_ratio = original_width/max_image_width
-                    height_ratio = original_height/max_image_height
-                    if (width_ratio > height_ratio):
-                        preview = preview.resize((max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
-                    elif (height_ratio > width_ratio):
-                        preview = preview.resize((int(original_width/height_ratio), max_image_height), Image.ANTIALIAS)
+
+                    if self.pre_load:
+                        try:
+                            preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                        except:
+                            print("failed to open", preview)
+                        else:
+                            original_width, original_height = preview.size
+                            width_ratio = original_width/max_image_width
+                            height_ratio = original_height/max_image_height
+                            if (width_ratio > height_ratio):
+                                preview = preview.resize((max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+                            elif (height_ratio > width_ratio):
+                                preview = preview.resize((int(original_width/height_ratio), max_image_height), Image.ANTIALIAS)
+                            else:
+                                preview = preview.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                            preview.save("element_preview.png")
+                            self.containers[skin]["label_image"].setPixmap(QPixmap("element_preview.png"))
+
                     else:
-                        preview = preview.resize((max_image_width, max_image_height), Image.ANTIALIAS)
-                    preview.save("element_preview.png")
-                    self.containers[skin]["label_image"].setPixmap(QPixmap("element_preview.png"))
+                        self.containers[skin]["label_image"].setPixmap(QPixmap("loading.png"))
                     self.elements[skin] = img_loc
 
                     self.verticalLayout_2.addWidget(self.containers[skin]["widget_element"])
@@ -138,6 +154,49 @@ class Ui_Dialog(object):
             if "pushButton_select" in self.containers[skin].keys():
                 self.containers[skin]["pushButton_select"].setText("Select")
                 self.containers[skin]["label_skin_name"].setText(skin)
+
+    def postLoadFunctions(self):
+        print("a")
+        self.postLoadPreviews()
+
+    def postLoadPreviews(self):
+        for skin in self.containers:
+            if "label_image" in self.containers[skin].keys():
+                try:
+                    skin_dir = os.listdir("/".join([self.skin_folder,skin]))
+                except:
+                    #print("".join([skin_folder,skin," is not a folder"]))
+                    pass
+                else:
+                    if "".join([self.element, ".png"]) not in skin_dir and "".join([self.element, "@2x.png"]) in skin_dir:
+                        img_loc = False
+                    elif "".join([self.element, "@2x.png"]) in skin_dir:
+                        img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,"@2x.png"])
+                    elif "".join([self.element, ".png"]) in skin_dir:
+                        img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".png"])
+
+                if img_loc:
+                    self.loadPreview(img_loc, self.containers[skin]["label_image"])
+
+
+    def loadPreview(self, img_loc, label_image):
+        try:
+            preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+        except:
+            print("failed to open", img_loc)
+        else:
+            original_width, original_height = preview.size
+            width_ratio = original_width/self.max_image_width
+            height_ratio = original_height/self.max_image_height
+            if (width_ratio > height_ratio):
+                preview = preview.resize((self.max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+            elif (height_ratio > width_ratio):
+                preview = preview.resize((int(original_width/height_ratio), self.max_image_height), Image.ANTIALIAS)
+            else:
+                preview = preview.resize((self.max_image_width, self.max_image_height), Image.ANTIALIAS)
+            preview.save("element_preview.png")
+            label_image.setPixmap(QPixmap("element_preview.png"))
+
 
 if __name__ == "__main__":
     import sys
