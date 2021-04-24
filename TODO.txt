@@ -17,7 +17,7 @@ MUST HAVES
 ~element picker
   =resize maintain aspect ratio
   -numbered elements
-  -dynamic sd/hd (show highest avaiable and choose appropriate)
+  =dynamic sd/hd (show highest avaiable and choose appropriate)
   -wire to main window
 
 NICE TO HAVES
