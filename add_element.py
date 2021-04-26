@@ -29,6 +29,9 @@ class Ui_Dialog(object):
         self.label_add_element = QtWidgets.QLabel(self.widget)
         self.label_add_element.setObjectName("label_add_element")
         self.horizontalLayout.addWidget(self.label_add_element)
+        self.pushButton_element_browser = QtWidgets.QPushButton(self.widget)
+        self.pushButton_element_browser.setObjectName("pushButton_element_browser")
+        self.horizontalLayout.addWidget(self.pushButton_element_browser)
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
@@ -69,6 +72,7 @@ class Ui_Dialog(object):
         _translate = QtCore.QCoreApplication.translate
         Dialog.setWindowTitle(_translate("Dialog", "Select Skin Element"))
         self.label_add_element.setText(_translate("Dialog", "Add Element"))
+        self.pushButton_element_browser.setText(_translate("Dialog", "Element Browser"))
         self.pushButton.setText(_translate("Dialog", "Select File"))
         self.label_preview.setText(_translate("Dialog", "Preview"))
 

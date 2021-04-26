@@ -14,9 +14,191 @@ from PyQt5.QtGui import QPixmap
 import add_element_01
 import cursor_editor_01
 
+from threading import Thread
 import json
 import os
 import shutil
+from PIL import Image
+import sys
+
+class ElementBrowser(QWidget):
+
+    #def __init__(self):
+        #super().__init__()
+
+        #self.createElements()
+
+
+    def setupUi(self, Dialog):
+        Dialog.setObjectName("Dialog")
+        Dialog.resize(683, 605)
+        self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label_element_browser = QtWidgets.QLabel(Dialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_element_browser.sizePolicy().hasHeightForWidth())
+        self.label_element_browser.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_element_browser.setFont(font)
+        self.label_element_browser.setLineWidth(7)
+        self.label_element_browser.setObjectName("label_element_browser")
+        self.verticalLayout.addWidget(self.label_element_browser)
+        self.scrollArea = QtWidgets.QScrollArea(Dialog)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.scrollAreaWidgetContents = QtWidgets.QWidget()
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 663, 560))
+        self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.scrollAreaWidgetContents)
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.scrollArea.setWidget(self.scrollAreaWidgetContents)
+        self.verticalLayout.addWidget(self.scrollArea)
+
+        ######################
+
+        self.containers = {}
+        self.createElements(Dialog)
+
+        ##########################
+
+        self.retranslateUi(Dialog)
+        QtCore.QMetaObject.connectSlotsByName(Dialog)
+
+        ############
+        #QTimer.singleShot(1,self.postLoadFunctions)
+        self.postLoadFunctions()
+
+    def thread(self):
+        t1=Thread(target=self.Operation)
+        t1.start()
+
+    def loadPreview(self, img_loc, label_image):
+        try:
+            preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+        except:
+            print("failed to open", img_loc)
+        else:
+            self.max_image_height = 132
+            self.max_image_width = 235
+            original_width, original_height = preview.size
+            width_ratio = original_width/self.max_image_width
+            height_ratio = original_height/self.max_image_height
+            if (width_ratio > height_ratio):
+                preview = preview.resize((self.max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+            elif (height_ratio > width_ratio):
+                preview = preview.resize((int(original_width/height_ratio), self.max_image_height), Image.ANTIALIAS)
+            else:
+                preview = preview.resize((self.max_image_width, self.max_image_height), Image.ANTIALIAS)
+            preview.save("element_preview.png")
+            label_image.setPixmap(QPixmap("element_preview.png"))
+
+    def createElements(self, Dialog):
+        self.skin_folder = r'D:/osu!/Skins'
+        self.element = 'ranking-panel'
+        self.loading = 'loading.png'
+        self.pre_load = False
+        self.max_image_height = 132
+        self.max_image_width = 235
+
+        self.elements = {} # format {skin name : image object}
+        skins = os.listdir(self.skin_folder)
+
+        for skin in skins:
+
+            self.containers[skin] = {}
+            try:
+                skin_dir = os.listdir("/".join([self.skin_folder,skin]))
+            except:
+                #print("".join([skin_folder,skin," is not a folder"]))
+                pass
+            else:
+                if "".join([self.element, ".png"]) not in skin_dir and "".join([self.element, "@2x.png"]) in skin_dir:
+                    img_loc = False
+                elif "".join([self.element, "@2x.png"]) in skin_dir:
+                    img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,"@2x.png"])
+                elif "".join([self.element, ".png"]) in skin_dir:
+                    img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".png"])
+                    # create elements
+                if img_loc:
+                    self.containers[skin]["widget_element"] = QtWidgets.QWidget(self.scrollAreaWidgetContents)
+                    sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+                    sizePolicy.setHorizontalStretch(0)
+                    sizePolicy.setVerticalStretch(0)
+                    sizePolicy.setHeightForWidth(self.containers[skin]["widget_element"].sizePolicy().hasHeightForWidth())
+                    self.containers[skin]["widget_element"].setSizePolicy(sizePolicy)
+                    self.containers[skin]["widget_element"].setMinimumSize(QtCore.QSize(0, 150))
+                    self.containers[skin]["widget_element"].setObjectName("".join(["widget_element_",skin]))
+                    self.containers[skin]["horizontalLayout"] = QtWidgets.QHBoxLayout(self.containers[skin]["widget_element"])
+                    self.containers[skin]["horizontalLayout"].setObjectName("".join(["horizontalLayout",skin]))
+                    self.containers[skin]["label_image"] = QtWidgets.QLabel(self.containers[skin]["widget_element"])
+                    self.containers[skin]["label_image"].setMinimumSize(QtCore.QSize(0, 0))
+                    self.containers[skin]["label_image"].setMaximumSize(QtCore.QSize(235, 132))
+                    self.containers[skin]["label_image"].setObjectName("".join(["label_image",skin]))
+                    self.containers[skin]["horizontalLayout"].addWidget(self.containers[skin]["label_image"])
+                    self.containers[skin]["label_skin_name"] = QtWidgets.QLabel(self.containers[skin]["widget_element"])
+                    self.containers[skin]["label_skin_name"].setObjectName("".join(["label_skin_name",skin]))
+                    self.containers[skin]["horizontalLayout"].addWidget(self.containers[skin]["label_skin_name"])
+                    self.containers[skin]["pushButton_select"] = QtWidgets.QPushButton(self.containers[skin]["widget_element"])
+                    self.containers[skin]["pushButton_select"].setMaximumSize(QtCore.QSize(100, 16777215))
+                    self.containers[skin]["pushButton_select"].setObjectName("".join(["pushButton_select",skin]))
+                    self.containers[skin]["horizontalLayout"].addWidget(self.containers[skin]["pushButton_select"])
+
+                    self.containers[skin]["pushButton_select"].clicked.connect(lambda ignore, img_loc=img_loc: self.confirm(img_loc))
+                    self.containers[skin]["pushButton_select"].clicked.connect(Dialog.close)
+
+                    # set images
+
+                    if self.pre_load:
+                        try:
+                            preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                        except:
+                            print("failed to open", preview)
+                        else:
+                            original_width, original_height = preview.size
+                            width_ratio = original_width/max_image_width
+                            height_ratio = original_height/max_image_height
+                            if (width_ratio > height_ratio):
+                                preview = preview.resize((max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+                            elif (height_ratio > width_ratio):
+                                preview = preview.resize((int(original_width/height_ratio), max_image_height), Image.ANTIALIAS)
+                            else:
+                                preview = preview.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+                            preview.save("element_preview.png")
+                            self.containers[skin]["label_image"].setPixmap(QPixmap("element_preview.png"))
+
+                    else:
+                        self.containers[skin]["label_image"].setPixmap(QPixmap("loading.png"))
+                        self.containers[skin]["img_loc"] = img_loc
+                    self.elements[skin] = img_loc
+
+                    self.verticalLayout_2.addWidget(self.containers[skin]["widget_element"])
+
+    def retranslateUi(self, Dialog):
+        _translate = QtCore.QCoreApplication.translate
+        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        self.label_element_browser.setText(_translate("Dialog", "Element Browser"))
+        for skin in self.containers:
+            if "pushButton_select" in self.containers[skin].keys():
+                self.containers[skin]["pushButton_select"].setText("Select")
+                self.containers[skin]["label_skin_name"].setText(skin)
+
+    def postLoadFunctions(self):
+        t1=Thread(target=self.Operation)
+        t1.start()
+
+    def Operation(self):
+        print("Operation Start")
+        for skin in self.containers:
+            if "img_loc" in self.containers[skin].keys():
+                self.loadPreview(self.containers[skin]["img_loc"], self.containers[skin]["label_image"])
+        print("Operation Finish")
+
+    def confirm(self, skin):
+        print(skin)
+        self.return_value = skin
 
 class AddElement(QInputDialog):
 
@@ -39,6 +221,9 @@ class AddElement(QInputDialog):
         self.label_add_element = QtWidgets.QLabel(self.widget)
         self.label_add_element.setObjectName("label_add_element")
         self.horizontalLayout.addWidget(self.label_add_element)
+        self.pushButton_element_browser = QtWidgets.QPushButton(self.widget)
+        self.pushButton_element_browser.setObjectName("pushButton_element_browser")
+        self.horizontalLayout.addWidget(self.pushButton_element_browser)
         self.pushButton = QtWidgets.QPushButton(self.widget)
         self.pushButton.setObjectName("pushButton")
         self.horizontalLayout.addWidget(self.pushButton)
@@ -78,6 +263,7 @@ class AddElement(QInputDialog):
         ####
 
         self.pushButton.clicked.connect(self.selectFile)
+        self.pushButton_element_browser.clicked.connect(self.elementBrowser)
 
 
     def retranslateUi(self, Dialog):
@@ -85,6 +271,7 @@ class AddElement(QInputDialog):
         Dialog.setWindowTitle(_translate("Dialog", "Select Skin Element"))
         self.label_add_element.setText(_translate("Dialog", "Add Element"))
         self.pushButton.setText(_translate("Dialog", "Select File"))
+        self.pushButton_element_browser.setText(_translate("Dialog", "Element Browser"))
         self.label_preview.setText(_translate("Dialog", "Preview"))
 
 
@@ -96,6 +283,27 @@ class AddElement(QInputDialog):
         print(file)
         self.label_image.setPixmap(QPixmap(file))
         self.lineEdit_filepath.setText(file)
+
+    def elementBrowser(self):
+        print("elementBrowser")
+        Dialog = QtWidgets.QDialog()
+        ui_element_browser = ElementBrowser()
+        ui_element_browser.setupUi(Dialog)
+        Dialog.show()
+        Dialog.exec_()
+        print(ui_element_browser.return_value)
+        file = ui_element_browser.return_value
+        try:
+            print("Element Browser: recieved", ui_element_browser.return_value)
+            self.lineEdit_filepath.setText(ui_element_browser.return_value)
+        except:
+            print("failed to update")
+        try:
+            self.label_image.setPixmap(QPixmap(file))
+            self.lineEdit_filepath.setText(file)
+        except:
+            print("file not image/ not found")
+
 
     def confirm(self):
         self.return_value = self.lineEdit_filepath.text()
@@ -969,13 +1177,13 @@ class Ui_MainWindow(object):
         print("AddElement")
         print(lineEdit)
         Dialog = QtWidgets.QDialog()
-        ui = AddElement()
-        ui.setupUi(Dialog)
+        ui_add_element = AddElement()
+        ui_add_element.setupUi(Dialog)
         Dialog.show()
         Dialog.exec_()
         try:
-            print("recieved", ui.return_value)
-            lineEdit.setText(ui.return_value)
+            print("recieved", ui_add_element.return_value)
+            lineEdit.setText(ui_add_element.return_value)
         except:
             print("failed to update")
 

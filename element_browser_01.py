@@ -13,9 +13,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from PyQt5.QtWidgets import QWidget, QInputDialog, QFileDialog, QDialog, QMessageBox
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, QThread
 import add_element_01
 import cursor_editor_01
+from threading import Thread
+
 
 import json
 import os
@@ -74,7 +76,7 @@ class Ui_Dialog(object):
         self.addUiText()
 
     def createElements(self):
-        self.skin_folder = r'D:/osu!/Skins - Archive'
+        self.skin_folder = r'D:/osu!/Skins'
         self.element = 'ranking-panel'
         self.loading = 'loading.png'
         self.pre_load = False
@@ -145,6 +147,7 @@ class Ui_Dialog(object):
 
                     else:
                         self.containers[skin]["label_image"].setPixmap(QPixmap("loading.png"))
+                        self.containers[skin]["img_loc"] = img_loc
                     self.elements[skin] = img_loc
 
                     self.verticalLayout_2.addWidget(self.containers[skin]["widget_element"])
@@ -157,7 +160,8 @@ class Ui_Dialog(object):
 
     def postLoadFunctions(self):
         print("a")
-        self.postLoadPreviews()
+        #self.postLoadPreviews()
+        self.get_thread = loadPreviewThread(self.containers)
 
     def postLoadPreviews(self):
         for skin in self.containers:
@@ -174,7 +178,6 @@ class Ui_Dialog(object):
                         img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,"@2x.png"])
                     elif "".join([self.element, ".png"]) in skin_dir:
                         img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".png"])
-
                 if img_loc:
                     self.loadPreview(img_loc, self.containers[skin]["label_image"])
 
@@ -195,8 +198,46 @@ class Ui_Dialog(object):
             else:
                 preview = preview.resize((self.max_image_width, self.max_image_height), Image.ANTIALIAS)
             preview.save("element_preview.png")
+            # label_image.setPixmap(QPixmap("element_preview.png"))
+            self.previewReady(QPixmap("element_preview.png"), label_image)
+            #print("a")
+
+    def previewReady(self, QImage, label_image):
+        label_image.setPixmap(QPixmap("element_preview.png"))
+
+class loadPreviewThread(QThread):
+    def __init__(self, containers):
+        QThread.__init__(self)
+        self.containers = containers
+        self.run()
+
+    def __del__(self):
+        self.wait()
+
+    def loadPreview(self, img_loc, label_image):
+        try:
+            preview = Image.open(img_loc)#.resize((max_image_width, max_image_height), Image.ANTIALIAS)
+        except:
+            print("failed to open", img_loc)
+        else:
+            self.max_image_height = 132
+            self.max_image_width = 235
+            original_width, original_height = preview.size
+            width_ratio = original_width/self.max_image_width
+            height_ratio = original_height/self.max_image_height
+            if (width_ratio > height_ratio):
+                preview = preview.resize((self.max_image_width, int(original_height/width_ratio)), Image.ANTIALIAS)
+            elif (height_ratio > width_ratio):
+                preview = preview.resize((int(original_width/height_ratio), self.max_image_height), Image.ANTIALIAS)
+            else:
+                preview = preview.resize((self.max_image_width, self.max_image_height), Image.ANTIALIAS)
+            preview.save("element_preview.png")
             label_image.setPixmap(QPixmap("element_preview.png"))
 
+    def run(self):
+        for skin in self.containers:
+            if "img_loc" in self.containers[skin].keys():
+                self.loadPreview(self.containers[skin]["img_loc"], self.containers[skin]["label_image"])
 
 if __name__ == "__main__":
     import sys
