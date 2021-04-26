@@ -10,6 +10,8 @@ MUST HAVES
   -create downscaled SD version of each element
   -resize to appropriate size
 
+-skin folder selection
+
 -audio
 -handle numbered elements
 -create header labels

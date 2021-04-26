@@ -29,7 +29,7 @@ class ElementBrowser(QWidget):
         #self.createElements()
 
 
-    def setupUi(self, Dialog):
+    def setupUi(self, Dialog, element):
         Dialog.setObjectName("Dialog")
         Dialog.resize(683, 605)
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -59,6 +59,8 @@ class ElementBrowser(QWidget):
 
         ######################
 
+        self.return_value = ""
+        self.element = element
         self.containers = {}
         self.createElements(Dialog)
 
@@ -97,7 +99,7 @@ class ElementBrowser(QWidget):
 
     def createElements(self, Dialog):
         self.skin_folder = r'D:/osu!/Skins'
-        self.element = 'ranking-panel'
+        #self.element = 'ranking-panel'
         self.loading = 'loading.png'
         self.pre_load = False
         self.max_image_height = 132
@@ -107,7 +109,7 @@ class ElementBrowser(QWidget):
         skins = os.listdir(self.skin_folder)
 
         for skin in skins:
-
+            img_loc = False
             self.containers[skin] = {}
             try:
                 skin_dir = os.listdir("/".join([self.skin_folder,skin]))
@@ -115,13 +117,17 @@ class ElementBrowser(QWidget):
                 #print("".join([skin_folder,skin," is not a folder"]))
                 pass
             else:
-                if "".join([self.element, ".png"]) not in skin_dir and "".join([self.element, "@2x.png"]) in skin_dir:
-                    img_loc = False
+                if "".join([self.element, ".png"]) not in skin_dir and "".join([self.element, "@2x.png"]) not in skin_dir:
+                    if "".join([self.element, ".jpg"]) in skin_dir:  # catches menu-background.jpg
+                        img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".jpg"])
                 elif "".join([self.element, "@2x.png"]) in skin_dir:
                     img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,"@2x.png"])
                 elif "".join([self.element, ".png"]) in skin_dir:
                     img_loc = "".join([self.skin_folder,"/",skin,"/",self.element,".png"])
                     # create elements
+                else:
+                    print("img_loc not identified")
+                    img_loc = False
                 if img_loc:
                     self.containers[skin]["widget_element"] = QtWidgets.QWidget(self.scrollAreaWidgetContents)
                     sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -204,7 +210,7 @@ class AddElement(QInputDialog):
 
     #dialog_return = QtCore.pyqtSignal(str)
 
-    def setupUi(self, Dialog):
+    def setupUi(self, Dialog, element):
         Dialog.setObjectName("Dialog")
         Dialog.resize(678, 303)
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
@@ -262,6 +268,7 @@ class AddElement(QInputDialog):
         QtCore.QMetaObject.connectSlotsByName(Dialog)
         ####
 
+        self.element = element
         self.pushButton.clicked.connect(self.selectFile)
         self.pushButton_element_browser.clicked.connect(self.elementBrowser)
 
@@ -288,7 +295,7 @@ class AddElement(QInputDialog):
         print("elementBrowser")
         Dialog = QtWidgets.QDialog()
         ui_element_browser = ElementBrowser()
-        ui_element_browser.setupUi(Dialog)
+        ui_element_browser.setupUi(Dialog, self.element)
         Dialog.show()
         Dialog.exec_()
         print(ui_element_browser.return_value)
@@ -1163,7 +1170,7 @@ class Ui_MainWindow(object):
                     self.fields[tab_a][tab_b][field]["pushButton"].setObjectName("pushButton_" + field)
 
                     lineEdit = self.fields[tab_a][tab_b][field]["lineEdit"]
-                    self.fields[tab_a][tab_b][field]["pushButton"].clicked.connect(lambda ignore,tab_a=tab_a,tab_b=tab_b,field=field: self.add_element(self.fields[tab_a][tab_b][field]["lineEdit"]))
+                    self.fields[tab_a][tab_b][field]["pushButton"].clicked.connect(lambda ignore,tab_a=tab_a,tab_b=tab_b,field=field: self.add_element(self.fields[tab_a][tab_b][field]["lineEdit"], field))
                     i += 1
 
     def addUiText(self):
@@ -1173,12 +1180,12 @@ class Ui_MainWindow(object):
                     self.fields[tab_a][tab_b][field]["label"].setText(field)
                     self.fields[tab_a][tab_b][field]["pushButton"].setText("Select")
 
-    def add_element(self, lineEdit):
+    def add_element(self, lineEdit, element):
         print("AddElement")
         print(lineEdit)
         Dialog = QtWidgets.QDialog()
         ui_add_element = AddElement()
-        ui_add_element.setupUi(Dialog)
+        ui_add_element.setupUi(Dialog, element)
         Dialog.show()
         Dialog.exec_()
         try:
