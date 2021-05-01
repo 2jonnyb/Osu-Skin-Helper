@@ -69,59 +69,7 @@
        <string>Modes</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>60</y>
-        <width>70</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Standard</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_2">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>60</y>
-        <width>70</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Mania</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_3">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>60</y>
-        <width>70</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Taiko</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_4">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>60</y>
-        <width>70</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Catch</string>
-      </property>
-     </widget>
-     <widget class="QPlainTextEdit" name="plainTextEdit">
+     <widget class="QPlainTextEdit" name="plainTextEdit_edit_skin_ini">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -988,6 +936,254 @@
         </property>
         <property name="text">
          <string>Fruits</string>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_audio">
+     <attribute name="title">
+      <string>Audio</string>
+     </attribute>
+     <widget class="QTabWidget" name="tabWidget_8">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>941</width>
+        <height>821</height>
+       </rect>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab_audio_homescreen">
+       <attribute name="title">
+        <string>Homescreen</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_3">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Homescreen</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_clicks">
+       <attribute name="title">
+        <string>Clicks</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_4">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Clicks</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_multiplayer">
+       <attribute name="title">
+        <string>Multiplayer</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_5">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Multiplayer</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_key_input">
+       <attribute name="title">
+        <string>Key Input</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_6">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Key Input</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_pause_button">
+       <attribute name="title">
+        <string>Pause Button</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_7">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>161</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Pause Button</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_countdown">
+       <attribute name="title">
+        <string>Countdown</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_8">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Countdown</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_gameplay">
+       <attribute name="title">
+        <string>Gameplay</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_9">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Gameplay</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_sample">
+       <attribute name="title">
+        <string>Sample</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_10">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Sample</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_spinner">
+       <attribute name="title">
+        <string>Spinner</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_11">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Spinner</string>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_audio_taiko">
+       <attribute name="title">
+        <string>Taiko</string>
+       </attribute>
+       <widget class="QLabel" name="label_header_cursor_12">
+        <property name="geometry">
+         <rect>
+          <x>30</x>
+          <y>20</y>
+          <width>151</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>20</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Taiko</string>
         </property>
        </widget>
       </widget>
